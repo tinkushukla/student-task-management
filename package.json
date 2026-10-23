@@ -1,0 +1,12 @@
+
+{
+  "name": "student-task-manager",
+  "version": "1.0.0",
+  "description": "A student task management web application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "private": true
+}

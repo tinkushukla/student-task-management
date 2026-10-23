@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Task Manager</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div id="authPage" class="auth-page">
+    <div class="auth-card">
+      <div class="brand-icon">S</div>
+      <h1>Student Task Manager</h1>
+      <p class="muted">Organize your studies, one task at a time.</p>
+
+      <div class="auth-tabs">
+        <button type="button" id="loginTab" class="tab active">Login</button>
+        <button type="button" id="registerTab" class="tab">Create account</button>
+      </div>
+
+      <form id="authForm">
+        <div id="nameGroup" class="hidden">
+          <label for="name">Full name</label>
+          <input id="name" name="name" autocomplete="name" placeholder="Your name">
+        </div>
+
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email"
+               autocomplete="email" placeholder="you@example.com" required>
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password"
+               autocomplete="current-password" placeholder="Your password"
+               minlength="6" required>
+
+        <button id="authSubmit" type="submit" class="primary-btn full-width">
+          Login
+        </button>
+        <p id="authMessage" class="message" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <div id="appPage" class="app-layout hidden">
+    <aside class="sidebar">
+      <div class="brand-row">
+        <div class="brand-icon">S</div>
+        <div>
+          <strong>Student Manager</strong>
+          <small>Student Workspace</small>
+        </div>
+      </div>
+
+      <p class="menu-label">WORKSPACE</p>
+      <nav class="sidebar-nav">
+        <a href="#dashboard">▦ Dashboard</a>
+        <a href="#assignments">▤ Assignments</a>
+        <a href="#deadlines">◷ Deadlines</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <p>Small steps every day lead to big results.</p>
+        <button id="logoutBtn" type="button" class="secondary-btn full-width">
+          Logout
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">YOUR PERSONAL WORKSPACE</p>
+          <h1 id="welcomeTitle">My Dashboard</h1>
+          <p class="muted">Plan your work and track your progress.</p>
+        </div>
+        <div id="userAvatar" class="avatar">S</div>
+      </header>
+
+      <section id="dashboard" class="stats-grid">
+        <article class="stat-card">
+          <p>Total tasks</p>
+          <h2 id="totalCount">0</h2>
+        </article>
+        <article class="stat-card">
+          <p>Pending tasks</p>
+          <h2 id="pendingCount">0</h2>
+        </article>
+        <article class="stat-card">
+          <p>Completed tasks</p>
+          <h2 id="completedCount">0</h2>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading">
+          <h2>Overall Progress</h2>
+          <strong id="progressPercent">0%</strong>
+        </div>
+        <div class="progress-track">
+          <div id="progressBar" class="progress-fill"></div>
+        </div>
+        <p id="progressText" class="muted">Your progress will appear here.</p>
+      </section>
+
+      <section id="deadlines" class="deadline-grid">
+        <article class="deadline-card">
+          <p>Due today</p>
+          <h2 id="dueTodayCount">0</h2>
+        </article>
+        <article class="deadline-card">
+          <p>Overdue</p>
+          <h2 id="overdueCount">0</h2>
+        </article>
+        <article class="deadline-card">
+          <p>Upcoming (7 days)</p>
+          <h2 id="upcomingCount">0</h2>
+        </article>
+      </section>
+
+      <section id="assignments" class="panel">
+        <div class="section-heading assignments-heading">
+          <div>
+            <h2>My Assignments</h2>
+            <p class="muted">Create and manage your college work.</p>
+          </div>
+          <button id="addTaskBtn" type="button" class="primary-btn">
+            + Add Assignment
+          </button>
+        </div>
+
+        <div id="taskFilters" class="filter-bar">
+          <button type="button" class="filter-btn active" data-filter="all">All</button>
+          <button type="button" class="filter-btn" data-filter="pending">Pending</button>
+          <button type="button" class="filter-btn" data-filter="completed">Completed</button>
+        </div>
+
+        <form id="taskForm" class="task-form hidden">
+          <h3 id="formHeading">Add a new task</h3>
+
+          <label for="taskTitle">Assignment title</label>
+          <input id="taskTitle" name="title" required maxlength="150"
+                 placeholder="e.g. Complete DBMS assignment">
+
+          <label for="taskDescription">Description</label>
+          <textarea id="taskDescription" name="description" rows="3"
+                    placeholder="Assignment details"></textarea>
+
+          <label for="taskDueDate">Due date</label>
+          <input id="taskDueDate" name="due_date" type="date">
+
+          <p id="taskMessage" class="message" aria-live="polite"></p>
+
+          <div class="form-actions">
+            <button id="saveTaskBtn" type="submit" class="primary-btn">
+              Save task
+            </button>
+            <button id="cancelTaskBtn" type="button" class="secondary-btn">
+              Cancel
+            </button>
+          </div>
+        </form>
+
+        <div id="taskList" class="task-list"></div>
+
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">▤</div>
+          <h3>No assignments yet</h3>
+          <p class="muted">Click below to add your first assignment.</p>
+          <button id="emptyAddTaskBtn" type="button" class="primary-btn">
+            + Add Assignment
+          </button>
+        </div>
+      </section>
+
+      <footer class="footer">Made for better learning · Student Task Manager</footer>
+    </main>
+  </div>
+</body>
+</html>
